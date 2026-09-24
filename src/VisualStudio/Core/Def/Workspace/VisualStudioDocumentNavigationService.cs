@@ -167,6 +167,9 @@ internal sealed class VisualStudioDocumentNavigationService(
 
         return new NavigableLocation(async (options, cancellationToken) =>
         {
+            if (options.Destination is PeekDestination)
+                return await TryPeekAsync(workspace, documentId, getTextSpanForMappingAsync, cancellationToken).ConfigureAwait(false);
+
             var tabDestination = (TabDestination)options.Destination;
 
             await _threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
@@ -176,6 +179,34 @@ internal sealed class VisualStudioDocumentNavigationService(
                 return await callback(cancellationToken).ConfigureAwait(true);
             }
         });
+    }
+
+    /// <summary>
+    /// Shows the target in the peek session in scope instead of opening it.  Peek is the one caller that asks for
+    /// this, and it opens the scope around the navigation.
+    /// </summary>
+    private static async Task<bool> TryPeekAsync(
+        Workspace workspace,
+        DocumentId documentId,
+        Func<Document, Task<TextSpan>> getTextSpanForMappingAsync,
+        CancellationToken cancellationToken)
+    {
+        var scope = PeekNavigationScope.Current;
+        if (scope is null)
+        {
+            Debug.Fail("Navigated to PeekDestination without a peek session in scope.");
+            return false;
+        }
+
+        // Peeking should not change the context of linked files and Shared Projects either.
+        documentId = workspace.GetDocumentIdInCurrentContext(documentId);
+
+        var document = await workspace.CurrentSolution.GetDocumentAsync(documentId, cancellationToken: cancellationToken).ConfigureAwait(false);
+        if (document is null)
+            return false;
+
+        var span = await getTextSpanForMappingAsync(document).ConfigureAwait(false);
+        return await scope.TryAddResultAsync(document, span, cancellationToken).ConfigureAwait(false);
     }
 
     private async Task<Func<CancellationToken, Task<bool>>?> GetNavigationCallbackAsync(

@@ -109,6 +109,10 @@ internal sealed partial class VisualStudioSymbolNavigationService(
                 var navigationTool = _serviceProvider.GetServiceOnMainThread<SVsObjBrowser, IVsNavigationTool>();
                 return new NavigableLocation(async (options, cancellationToken) =>
                 {
+                    // The Object Browser is a tool window; there is nothing to show in a peek pane.
+                    if (options.Destination is PeekDestination)
+                        return false;
+
                     await _threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
                     return navigationTool.NavigateToNavInfo(navInfo) == VSConstants.S_OK;
                 });
@@ -130,6 +134,10 @@ internal sealed partial class VisualStudioSymbolNavigationService(
 
         return new NavigableLocation(async (options, cancellationToken) =>
         {
+            // Peek asks whoever knows how to show a file in its pane; opening a tab is not that.
+            if (options.Destination is PeekDestination)
+                return false;
+
             // The generated file opens in a preview tab, whatever the caller asked for.
             var provisionalTabOptions = options.Destination is TabDestination tabDestination
                 ? options with { Destination = tabDestination with { PreferProvisional = true } }

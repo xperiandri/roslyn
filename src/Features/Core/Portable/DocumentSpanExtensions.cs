@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.Navigation;
 using Microsoft.CodeAnalysis.Shared.Extensions;
+using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis;
 
@@ -19,11 +20,19 @@ internal static class DocumentSpanExtensions
         return (workspace, service);
     }
 
-    public static Task<INavigableLocation?> GetNavigableLocationAsync(this DocumentSpan documentSpan, CancellationToken cancellationToken)
+    public static async Task<INavigableLocation?> GetNavigableLocationAsync(this DocumentSpan documentSpan, CancellationToken cancellationToken)
     {
         var (workspace, service) = GetNavigationParts(documentSpan);
-        return service.GetLocationForPositionAsync(
-            workspace, documentSpan.Document.Id, documentSpan.SourceSpan.Start, cancellationToken);
+        var location = await service.GetLocationForPositionAsync(
+            workspace, documentSpan.Document.Id, documentSpan.SourceSpan.Start, cancellationToken).ConfigureAwait(false);
+
+        // Peek shows the span itself, so it needs nothing from the host to open.
+        return new NavigableLocation((options, cancellationToken) =>
+            options.Destination is PeekDestination
+                ? PeekNavigationScope.Current is { } scope
+                    ? scope.TryAddResultAsync(documentSpan.Document, documentSpan.SourceSpan, cancellationToken)
+                    : SpecializedTasks.False
+                : location?.NavigateToAsync(options, cancellationToken) ?? SpecializedTasks.False);
     }
 
     public static async Task<bool> IsHiddenAsync(

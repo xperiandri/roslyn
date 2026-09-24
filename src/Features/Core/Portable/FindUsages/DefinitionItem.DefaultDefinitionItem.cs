@@ -47,8 +47,19 @@ internal abstract partial class DefinitionItem
                     Contract.ThrowIfNull(project);
 
                     var navigationService = workspace.Services.GetRequiredService<ISymbolNavigationService>();
-                    return await navigationService.GetNavigableLocationAsync(
+                    var hostLocation = await navigationService.GetNavigableLocationAsync(
                         symbol, project, cancellationToken).ConfigureAwait(false);
+
+                    return new NavigableLocation(async (options, cancellationToken) =>
+                    {
+                        if (hostLocation != null && await hostLocation.NavigateToAsync(options, cancellationToken).ConfigureAwait(false))
+                            return true;
+
+                        // The host showed nothing, so peek falls back to the metadata as source the user came to read.
+                        return options.Destination is PeekDestination
+                            && PeekNavigationScope.Current is { } scope
+                            && await scope.TryAddMetadataResultAsync(project, symbol, cancellationToken).ConfigureAwait(false);
+                    });
                 }
 
                 return null;

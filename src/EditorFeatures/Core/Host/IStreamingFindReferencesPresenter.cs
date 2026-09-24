@@ -126,8 +126,19 @@ internal static class IStreamingFindUsagesPresenterExtensions
         var preferredLocation = GetPreferredNonGeneratedLocation(builder);
 
         var navigableItems = builder.SelectAsArray(t => t.item);
+        var locations = builder.SelectAsArray(t => t.location);
         return new NavigableLocation(async (options, cancellationToken) =>
         {
+            if (options.Destination is PeekDestination)
+            {
+                // Peek shows every definition in its pane, so there is nothing to choose between.
+                var shown = false;
+                foreach (var definitionLocation in locations)
+                    shown |= await definitionLocation.NavigateToAsync(options, cancellationToken).ConfigureAwait(false);
+
+                return shown;
+            }
+
             // Can only navigate or present items on UI thread.
             await threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 

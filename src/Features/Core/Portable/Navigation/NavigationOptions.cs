@@ -19,6 +19,9 @@ internal abstract record NavigationDestination
 
     /// <summary>A provisional (preview) tab, activated.</summary>
     public static readonly NavigationDestination ProvisionalTab = new TabDestination(PreferProvisional: true);
+
+    /// <summary>The peek session in scope.  See <see cref="PeekDestination"/>.</summary>
+    public static readonly NavigationDestination Peek = new PeekDestination();
 }
 
 /// <param name="PreferProvisional">
@@ -31,6 +34,12 @@ internal abstract record NavigationDestination
 internal sealed record TabDestination(
     bool PreferProvisional = false,
     bool Activate = true) : NavigationDestination;
+
+/// <summary>
+/// Shows the target in the peek session that is in scope, instead of opening it.  Whoever navigates with this
+/// destination is responsible for putting that session in scope first.
+/// </summary>
+internal sealed record PeekDestination : NavigationDestination;
 
 /// <summary>
 /// Navigation options.

@@ -93,6 +93,12 @@ internal sealed class VisualStudioDefinitionsAndReferencesFactory(
         {
             return Task.FromResult<INavigableLocation?>(new NavigableLocation(async (options, cancellationToken) =>
             {
+                if (options.Destination is PeekDestination)
+                {
+                    var lineSpan = new LinePositionSpan(linePosition, linePosition);
+                    return PeekNavigationScope.Current?.TryAddResult(filePath, lineSpan, lineSpan, title: null, tooltip: null, isReadOnly: false) ?? false;
+                }
+
                 await threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
                 return TryOpenFile() && TryNavigateToPosition();
             }));

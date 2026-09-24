@@ -7,6 +7,8 @@ Imports System.Threading
 Imports Microsoft.CodeAnalysis.Collections
 Imports Microsoft.CodeAnalysis.Editor.Implementation.Peek
 Imports Microsoft.CodeAnalysis.Editor.Shared.Utilities
+Imports Microsoft.CodeAnalysis.MetadataAsSource
+Imports Microsoft.CodeAnalysis.Options
 Imports Microsoft.VisualStudio.Imaging.Interop
 Imports Microsoft.VisualStudio.Language.Intellisense
 Imports Microsoft.VisualStudio.Text
@@ -308,8 +310,9 @@ public partial class D
 
             Dim peekableItemSource As New PeekableItemSource(
                 textBuffer,
-                workspace.GetService(Of PeekableItemFactory),
                 New MockPeekResultFactory(workspace.GetService(Of IPersistentSpanFactory)),
+                workspace.GetService(Of IMetadataAsSourceFileService),
+                workspace.GetService(Of IGlobalOptionService),
                 workspace.GetService(Of IThreadingContext),
                 workspace.GetService(Of IUIThreadOperationExecutor))
 
