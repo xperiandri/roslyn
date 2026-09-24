@@ -24,7 +24,7 @@ internal static class GoToDefinitionHelpers
         var location = await GetDefinitionLocationAsync(
             symbol, solution, threadingContext, streamingPresenter, cancellationToken, thirdPartyNavigationAllowed).ConfigureAwait(false);
         return await location.TryNavigateToAsync(
-            threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: true), cancellationToken).ConfigureAwait(false);
+            threadingContext, new NavigationOptions(NavigationDestination.ProvisionalTab), cancellationToken).ConfigureAwait(false);
     }
 
     public static async Task<INavigableLocation?> GetDefinitionLocationAsync(

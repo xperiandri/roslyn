@@ -78,7 +78,7 @@ internal sealed class NavigationActionFactory(
                     .ConfigureAwait(false);
 
                 await location
-                    .TryNavigateToAsync(threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: true), cancellationToken)
+                    .TryNavigateToAsync(threadingContext, new NavigationOptions(NavigationDestination.ProvisionalTab), cancellationToken)
                     .ConfigureAwait(false);
             }
         }

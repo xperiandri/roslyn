@@ -183,7 +183,7 @@ internal sealed class ValueTrackedTreeItemViewModel : TreeItemViewModel
             return;
 
         // While navigating do not activate the tab, which will change focus from the tool window
-        var options = new NavigationOptions(PreferProvisionalTab: true, ActivateTab: false);
+        var options = new NavigationOptions(new TabDestination(PreferProvisional: true, Activate: false));
         await navigationService.TryNavigateToSpanAsync(
             this.ThreadingContext, Workspace, DocumentId, _trackedItem.Span, options, context.UserCancellationToken).ConfigureAwait(false);
     }

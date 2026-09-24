@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.FindUsages;
 using Microsoft.CodeAnalysis.Navigation;
+using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.ExternalAccess.VSTypeScript.Api;
 
@@ -71,7 +72,9 @@ internal sealed class VSTypeScriptDefinitionItem
                 return null;
 
             return new NavigableLocation((options, cancellationToken) =>
-                _navigator.TryNavigateToAsync(workspace, options.PreferProvisionalTab, options.ActivateTab, cancellationToken));
+                options.Destination is TabDestination tab
+                    ? _navigator.TryNavigateToAsync(workspace, tab.PreferProvisional, tab.Activate, cancellationToken)
+                    : SpecializedTasks.False);
         }
     }
 
@@ -115,7 +118,7 @@ internal sealed class VSTypeScriptDefinitionItem
     {
         var location = await UnderlyingObject.GetNavigableLocationAsync(workspace, cancellationToken).ConfigureAwait(false);
         return location != null &&
-            await location.NavigateToAsync(new NavigationOptions(showInPreviewTab, activateTab), cancellationToken).ConfigureAwait(false);
+            await location.NavigateToAsync(new NavigationOptions(new TabDestination(showInPreviewTab, activateTab)), cancellationToken).ConfigureAwait(false);
     }
 }
 

@@ -51,6 +51,6 @@ internal sealed class UnitTestingStackTraceServiceAccessor(
     {
         var location = await definitionItem.UnderlyingObject.GetNavigableLocationAsync(workspace, cancellationToken).ConfigureAwait(false);
         return location != null &&
-            await location.NavigateToAsync(new NavigationOptions(showInPreviewTab, activateTab), cancellationToken).ConfigureAwait(false);
+            await location.NavigateToAsync(new NavigationOptions(new TabDestination(showInPreviewTab, activateTab)), cancellationToken).ConfigureAwait(false);
     }
 }

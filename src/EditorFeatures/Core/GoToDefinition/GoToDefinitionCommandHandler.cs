@@ -134,7 +134,7 @@ internal sealed class GoToDefinitionCommandHandler(
             await using var _2 = disposable.ConfigureAwait(false);
 
             succeeded = definitionLocation != null && await definitionLocation.Location.TryNavigateToAsync(
-                _threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: true),
+                _threadingContext, new NavigationOptions(NavigationDestination.ProvisionalTab),
                 cancellationToken).ConfigureAwait(false);
         }
 

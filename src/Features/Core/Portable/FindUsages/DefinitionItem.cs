@@ -144,7 +144,7 @@ internal abstract partial class DefinitionItem
 
     [Obsolete("Use GetNavigableLocationAsync instead")]
     public Task<bool> TryNavigateToAsync(Workspace workspace, bool showInPreviewTab, bool activateTab, CancellationToken cancellationToken)
-        => TryNavigateToAsync(workspace, new NavigationOptions(showInPreviewTab, activateTab), cancellationToken);
+        => TryNavigateToAsync(workspace, new NavigationOptions(new TabDestination(showInPreviewTab, activateTab)), cancellationToken);
 
     [Obsolete("Use GetNavigableLocationAsync instead")]
     public async Task<bool> TryNavigateToAsync(Workspace workspace, NavigationOptions options, CancellationToken cancellationToken)

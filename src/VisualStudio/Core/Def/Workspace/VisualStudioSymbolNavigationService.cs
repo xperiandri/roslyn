@@ -130,6 +130,11 @@ internal sealed partial class VisualStudioSymbolNavigationService(
 
         return new NavigableLocation(async (options, cancellationToken) =>
         {
+            // The generated file opens in a preview tab, whatever the caller asked for.
+            var provisionalTabOptions = options.Destination is TabDestination tabDestination
+                ? options with { Destination = tabDestination with { PreferProvisional = true } }
+                : options;
+
             await _threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             var vsRunningDocumentTable4 = _serviceProvider.GetServiceOnMainThread<SVsRunningDocumentTable, IVsRunningDocumentTable4>();
@@ -170,7 +175,7 @@ internal sealed partial class VisualStudioSymbolNavigationService(
                     editorWorkspace,
                     openedDocument.Id,
                     result.IdentifierLocation.SourceSpan.Start,
-                    options with { PreferProvisionalTab = true },
+                    provisionalTabOptions,
                     cancellationToken).ConfigureAwait(false);
             }
 

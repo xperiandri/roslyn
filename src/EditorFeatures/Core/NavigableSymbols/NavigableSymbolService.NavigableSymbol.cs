@@ -61,7 +61,7 @@ internal partial class NavigableSymbolService
                 cancelOnFocusLost: false);
 
             await _location.TryNavigateToAsync(
-                _service._threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: true), backgroundIndicator.UserCancellationToken).ConfigureAwait(false);
+                _service._threadingContext, new NavigationOptions(NavigationDestination.ProvisionalTab), backgroundIndicator.UserCancellationToken).ConfigureAwait(false);
         }
     }
 }

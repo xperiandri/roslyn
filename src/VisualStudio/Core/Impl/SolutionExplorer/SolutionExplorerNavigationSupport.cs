@@ -38,7 +38,7 @@ internal sealed class SolutionExplorerNavigationSupport(
             virtualSpace: 0,
             // May be calling this on stale data.  Allow the position to be invalid
             allowInvalidPosition: true,
-            new NavigationOptions(PreferProvisionalTab: preview),
+            new NavigationOptions(new TabDestination(PreferProvisional: preview)),
             cancellationToken).ReportNonFatalErrorUnlessCancelledAsync(cancellationToken).CompletesAsyncOperation(token);
     }
 }

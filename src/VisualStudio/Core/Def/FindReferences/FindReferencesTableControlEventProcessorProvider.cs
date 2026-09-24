@@ -82,7 +82,7 @@ internal sealed class FindUsagesTableControlEventProcessorProvider : ITableContr
                     allowCancellation: true,
                     showProgress: false);
 
-                var options = new NavigationOptions(PreferProvisionalTab: e.IsPreview, ActivateTab: e.ShouldActivate);
+                var options = new NavigationOptions(new TabDestination(PreferProvisional: e.IsPreview, Activate: e.ShouldActivate));
                 await supportsNavigation.NavigateToAsync(options, context.UserCancellationToken).ConfigureAwait(false);
             }
         }

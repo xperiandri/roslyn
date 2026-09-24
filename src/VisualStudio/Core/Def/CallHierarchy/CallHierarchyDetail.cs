@@ -75,7 +75,7 @@ internal sealed class CallHierarchyDetail : ICallHierarchyItemDetails
         var navigator = _workspace.Services.GetService<IDocumentNavigationService>();
         await navigator.TryNavigateToSpanAsync(
             _provider.ThreadingContext, _workspace, document.Id, _span,
-            new NavigationOptions(PreferProvisionalTab: true, ActivateTab: false),
+            new NavigationOptions(new TabDestination(PreferProvisional: true, Activate: false)),
             context.UserCancellationToken).ConfigureAwait(false);
     }
 }

@@ -32,6 +32,6 @@ internal readonly struct UnitTestingDocumentSpan
     {
         var location = await this.DocumentSpan.GetNavigableLocationAsync(cancellationToken).ConfigureAwait(false);
         if (location != null)
-            await location.NavigateToAsync(new NavigationOptions(options.PreferProvisionalTab, options.ActivateTab), cancellationToken).ConfigureAwait(false);
+            await location.NavigateToAsync(new NavigationOptions(new TabDestination(options.PreferProvisionalTab, options.ActivateTab)), cancellationToken).ConfigureAwait(false);
     }
 }

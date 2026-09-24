@@ -167,8 +167,10 @@ internal sealed class VisualStudioDocumentNavigationService(
 
         return new NavigableLocation(async (options, cancellationToken) =>
         {
+            var tabDestination = (TabDestination)options.Destination;
+
             await _threadingContext.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            using (OpenNewDocumentStateScope(options))
+            using (OpenNewDocumentStateScope(tabDestination))
             {
                 // Ensure we come back to the UI Thread after navigating so we close the state scope.
                 return await callback(cancellationToken).ConfigureAwait(true);
@@ -420,13 +422,13 @@ internal sealed class VisualStudioDocumentNavigationService(
         return mapped != null;
     }
 
-    private static IDisposable OpenNewDocumentStateScope(NavigationOptions options)
+    private static IDisposable OpenNewDocumentStateScope(TabDestination destination)
     {
-        var state = options.PreferProvisionalTab
+        var state = destination.PreferProvisional
             ? __VSNEWDOCUMENTSTATE.NDS_Provisional
             : __VSNEWDOCUMENTSTATE.NDS_Permanent;
 
-        if (!options.ActivateTab)
+        if (!destination.Activate)
         {
             state |= __VSNEWDOCUMENTSTATE.NDS_NoActivate;
         }

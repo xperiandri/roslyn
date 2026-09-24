@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.ExternalAccess.FSharp.Navigation;
 using Microsoft.CodeAnalysis.Host.Mef;
 using Microsoft.CodeAnalysis.Navigation;
+using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.ExternalAccess.FSharp.Internal.Navigation;
 
@@ -43,6 +44,8 @@ internal sealed class FSharpCrossLanguageSymbolNavigationService : ICrossLanguag
             return null;
 
         return new NavigableLocation((options, cancellationToken) =>
-            location.NavigateToAsync(new FSharpNavigationOptions2(options.PreferProvisionalTab, options.ActivateTab), cancellationToken));
+            options.Destination is TabDestination tab
+                ? location.NavigateToAsync(new FSharpNavigationOptions2(tab.PreferProvisional, tab.Activate), cancellationToken)
+                : SpecializedTasks.False);
     }
 }

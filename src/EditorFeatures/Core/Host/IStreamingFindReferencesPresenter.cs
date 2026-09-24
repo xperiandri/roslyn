@@ -74,7 +74,7 @@ internal static class IStreamingFindUsagesPresenterExtensions
         var location = await presenter.GetStreamingLocationAsync(
             threadingContext, workspace, title, items, cancellationToken).ConfigureAwait(false);
         return await location.TryNavigateToAsync(
-            threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: true), cancellationToken).ConfigureAwait(false);
+            threadingContext, new NavigationOptions(NavigationDestination.ProvisionalTab), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>

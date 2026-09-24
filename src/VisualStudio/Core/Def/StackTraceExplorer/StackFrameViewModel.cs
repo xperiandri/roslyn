@@ -74,7 +74,7 @@ internal sealed class StackFrameViewModel(
         var location = await definition.GetNavigableLocationAsync(
             _workspace, cancellationToken).ConfigureAwait(false);
         await location.TryNavigateToAsync(
-            _threadingContext, new NavigationOptions(PreferProvisionalTab: true, ActivateTab: false), cancellationToken).ConfigureAwait(false);
+            _threadingContext, new NavigationOptions(new TabDestination(PreferProvisional: true, Activate: false)), cancellationToken).ConfigureAwait(false);
     }
 
     public void NavigateToSymbol()
@@ -122,7 +122,7 @@ internal sealed class StackFrameViewModel(
                     return;
 
                 // While navigating do not activate the tab, which will change focus from the tool window
-                var options = new NavigationOptions(PreferProvisionalTab: true, ActivateTab: false);
+                var options = new NavigationOptions(new TabDestination(PreferProvisional: true, Activate: false));
 
                 await navigationService.TryNavigateToLineAndOffsetAsync(
                     _threadingContext, _workspace, textDocument.Id, lineNumber - 1, offset: 0, options, cancellationToken)

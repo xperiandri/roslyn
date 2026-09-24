@@ -132,7 +132,7 @@ internal sealed class CallHierarchyItem : ICallHierarchyMemberItem
         using var context = _provider.ThreadOperationExecutor.BeginExecute(
             EditorFeaturesResources.Call_Hierarchy, ServicesVSResources.Navigating, allowCancellation: true, showProgress: false);
         await _navigableLocation.NavigateToAsync(
-            NavigationOptions.Default with { PreferProvisionalTab = true }, context.UserCancellationToken).ConfigureAwait(false);
+            new NavigationOptions(NavigationDestination.ProvisionalTab), context.UserCancellationToken).ConfigureAwait(false);
     }
 
     public void StartSearch(string categoryName, CallHierarchySearchScope searchScope, ICallHierarchySearchCallback callback)
