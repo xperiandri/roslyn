@@ -492,6 +492,12 @@ Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigableI
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigableItem.DisplayTaggedParts.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.TaggedText>
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigableItem.Glyph.get -> Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpGlyph
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigableItem.SourceSpan.get -> Microsoft.CodeAnalysis.Text.TextSpan
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination.<Clone>$() -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination.Equals(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination? other) -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination.Peek -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination.ProvisionalTab -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination.Tab -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination!
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2.<Clone>$() -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2!
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2.ActivateTab.get -> bool
@@ -501,11 +507,35 @@ Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigation
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2.FSharpNavigationOptions2(bool PreferProvisionalTab, bool ActivateTab) -> void
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2.PreferProvisionalTab.get -> bool
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2.PreferProvisionalTab.init -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.<Clone>$() -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.Deconstruct(out Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination! Destination) -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.Destination.get -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.Destination.init -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.Equals(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3? other) -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3.FSharpNavigationOptions3(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationDestination! Destination) -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination.<Clone>$() -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination.Equals(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination? other) -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpPeekDestination.FSharpPeekDestination() -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.<Clone>$() -> Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.Activate.get -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.Activate.init -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.Deconstruct(out bool PreferProvisional, out bool Activate) -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.Equals(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination? other) -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.FSharpTabDestination(bool PreferProvisional = false, bool Activate = true) -> void
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.PreferProvisional.get -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpTabDestination.PreferProvisional.init -> void
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpCrossLanguageSymbolNavigationService
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpCrossLanguageSymbolNavigationService.TryGetNavigableLocationAsync(string! assemblyName, string! documentationCommentId, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpNavigableLocation?>!
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpDocumentNavigationService
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpDocumentNavigationService.TryNavigateToPosition(Microsoft.CodeAnalysis.Workspace! workspace, Microsoft.CodeAnalysis.DocumentId! documentId, int position, int virtualSpace, Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> bool
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpDocumentNavigationService.TryNavigateToSpan(Microsoft.CodeAnalysis.Workspace! workspace, Microsoft.CodeAnalysis.DocumentId! documentId, Microsoft.CodeAnalysis.Text.TextSpan textSpan, Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> bool
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpNavigableLocation
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpNavigableLocation.NavigateToAsync(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2! options, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpNavigableLocation2
+Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.IFSharpNavigableLocation2.NavigateToAsync(Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.SignatureHelp.AbstractFSharpSignatureHelpProvider
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.SignatureHelp.AbstractFSharpSignatureHelpProvider.AbstractFSharpSignatureHelpProvider() -> void
 Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.SignatureHelp.FSharpSignatureHelpItem
@@ -899,6 +929,12 @@ Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigableItem
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigableItem.DisplayTaggedParts.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.TaggedText>
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigableItem.Glyph.get -> Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpGlyph
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigableItem.SourceSpan.get -> Microsoft.CodeAnalysis.Text.TextSpan
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination.<Clone>$() -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination.Equals(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination? other) -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination.Peek -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination.ProvisionalTab -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination.Tab -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination!
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2.<Clone>$() ->Microsoft.CodeAnalysis.ExternalAccess.Unified.FSharp.Navigation.FSharpNavigationOptions2!
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2.ActivateTab.get -> bool
@@ -908,11 +944,35 @@ Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2.FSharpNavigationOptions2(bool PreferProvisionalTab, bool ActivateTab) -> void
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2.PreferProvisionalTab.get -> bool
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2.PreferProvisionalTab.init -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.<Clone>$() -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.Deconstruct(out Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination! Destination) -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.Destination.get -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.Destination.init -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.Equals(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3? other) -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3.FSharpNavigationOptions3(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationDestination! Destination) -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination.<Clone>$() -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination.Equals(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination? other) -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpPeekDestination.FSharpPeekDestination() -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.<Clone>$() -> Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.Activate.get -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.Activate.init -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.Deconstruct(out bool PreferProvisional, out bool Activate) -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.Equals(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination? other) -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.FSharpTabDestination(bool PreferProvisional = false, bool Activate = true) -> void
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.PreferProvisional.get -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpTabDestination.PreferProvisional.init -> void
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpCrossLanguageSymbolNavigationService
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpCrossLanguageSymbolNavigationService.TryGetNavigableLocationAsync(string! assemblyName, string! documentationCommentId, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpNavigableLocation?>!
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpDocumentNavigationService
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpDocumentNavigationService.TryNavigateToPosition(Microsoft.CodeAnalysis.Workspace! workspace, Microsoft.CodeAnalysis.DocumentId! documentId, int position, int virtualSpace, Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> bool
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpDocumentNavigationService.TryNavigateToSpan(Microsoft.CodeAnalysis.Workspace! workspace, Microsoft.CodeAnalysis.DocumentId! documentId, Microsoft.CodeAnalysis.Text.TextSpan textSpan, Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> bool
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpNavigableLocation
 Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpNavigableLocation.NavigateToAsync(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions2! options, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpNavigableLocation2
+Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.IFSharpNavigableLocation2.NavigateToAsync(Microsoft.VisualStudio.ExternalAccess.FSharp.Navigation.FSharpNavigationOptions3! options, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
 Microsoft.VisualStudio.ExternalAccess.FSharp.SignatureHelp.AbstractFSharpSignatureHelpProvider
 Microsoft.VisualStudio.ExternalAccess.FSharp.SignatureHelp.AbstractFSharpSignatureHelpProvider.AbstractFSharpSignatureHelpProvider() -> void
 Microsoft.VisualStudio.ExternalAccess.FSharp.SignatureHelp.FSharpSignatureHelpItem

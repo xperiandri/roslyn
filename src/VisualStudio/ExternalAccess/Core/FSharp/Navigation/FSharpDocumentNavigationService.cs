@@ -35,19 +35,33 @@ internal class FSharpDocumentNavigationService(IThreadingContext threadingContex
     }
 
     public bool TryNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan, CancellationToken cancellationToken)
+        => TryNavigateToSpan(workspace, documentId, textSpan, new FSharpNavigationOptions3(FSharpNavigationDestination.ProvisionalTab), cancellationToken);
+
+    public bool TryNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan, FSharpNavigationOptions3 options, CancellationToken cancellationToken)
     {
         var service = workspace.Services.GetService<IDocumentNavigationService>();
         return threadingContext.JoinableTaskFactory.Run(() =>
             service.TryNavigateToSpanAsync(
-                threadingContext, workspace, documentId, textSpan, new NavigationOptions(NavigationDestination.ProvisionalTab), cancellationToken));
+                threadingContext, workspace, documentId, textSpan, ToNavigationOptions(options), cancellationToken));
     }
 
     public bool TryNavigateToPosition(Workspace workspace, DocumentId documentId, int position, int virtualSpace, CancellationToken cancellationToken)
+        => TryNavigateToPosition(workspace, documentId, position, virtualSpace, new FSharpNavigationOptions3(FSharpNavigationDestination.ProvisionalTab), cancellationToken);
+
+    public bool TryNavigateToPosition(Workspace workspace, DocumentId documentId, int position, int virtualSpace, FSharpNavigationOptions3 options, CancellationToken cancellationToken)
     {
         var service = workspace.Services.GetService<IDocumentNavigationService>();
         return threadingContext.JoinableTaskFactory.Run(() =>
             service.TryNavigateToPositionAsync(
                 threadingContext, workspace, documentId, position, virtualSpace,
-                allowInvalidPosition: false, new NavigationOptions(NavigationDestination.ProvisionalTab), cancellationToken));
+                allowInvalidPosition: false, ToNavigationOptions(options), cancellationToken));
     }
+
+    private static NavigationOptions ToNavigationOptions(FSharpNavigationOptions3 options)
+        => new(options.Destination switch
+        {
+            FSharpTabDestination tab => new TabDestination(tab.PreferProvisional, tab.Activate),
+            FSharpPeekDestination => NavigationDestination.Peek,
+            _ => throw ExceptionUtilities.UnexpectedValue(options.Destination),
+        });
 }

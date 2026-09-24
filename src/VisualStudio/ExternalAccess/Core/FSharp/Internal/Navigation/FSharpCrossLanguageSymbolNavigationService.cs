@@ -44,8 +44,22 @@ internal sealed class FSharpCrossLanguageSymbolNavigationService : ICrossLanguag
             return null;
 
         return new NavigableLocation((options, cancellationToken) =>
-            options.Destination is TabDestination tab
+        {
+            if (location is IFSharpNavigableLocation2 location2)
+                return location2.NavigateToAsync(new FSharpNavigationOptions3(ToFSharpDestination(options.Destination)), cancellationToken);
+
+            // A location from an F# service built before destinations existed can only open a tab.
+            return options.Destination is TabDestination tab
                 ? location.NavigateToAsync(new FSharpNavigationOptions2(tab.PreferProvisional, tab.Activate), cancellationToken)
-                : SpecializedTasks.False);
+                : SpecializedTasks.False;
+        });
     }
+
+    private static FSharpNavigationDestination ToFSharpDestination(NavigationDestination destination)
+        => destination switch
+        {
+            TabDestination tab => new FSharpTabDestination(tab.PreferProvisional, tab.Activate),
+            PeekDestination => FSharpNavigationDestination.Peek,
+            _ => throw ExceptionUtilities.UnexpectedValue(destination),
+        };
 }

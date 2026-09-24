@@ -22,4 +22,13 @@ internal interface IFSharpDocumentNavigationService : IWorkspaceService
     bool TryNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan, CancellationToken cancellationToken);
     /// <inheritdoc cref="IDocumentNavigationService.GetLocationForPositionAsync"/>
     bool TryNavigateToPosition(Workspace workspace, DocumentId documentId, int position, int virtualSpace, CancellationToken cancellationToken);
+
+    /// <inheritdoc cref="IDocumentNavigationService.GetLocationForSpanAsync"/>
+    /// <param name="options">Where the navigation should end.  Pass along what the caller was given, so that a
+    /// navigation that is being peeked at is shown in the peek pane rather than opened.</param>
+    bool TryNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan, FSharpNavigationOptions3 options, CancellationToken cancellationToken);
+
+    /// <inheritdoc cref="IDocumentNavigationService.GetLocationForPositionAsync"/>
+    /// <inheritdoc cref="TryNavigateToSpan(Workspace, DocumentId, TextSpan, FSharpNavigationOptions3, CancellationToken)" path="/param[@name=.options.]"/>
+    bool TryNavigateToPosition(Workspace workspace, DocumentId documentId, int position, int virtualSpace, FSharpNavigationOptions3 options, CancellationToken cancellationToken);
 }
