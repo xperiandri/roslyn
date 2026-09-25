@@ -122,6 +122,7 @@ Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpGlyphTags
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.AddMetadataReference(string! referencePath) -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.AddSourceFile(string! path, Microsoft.CodeAnalysis.SourceCodeKind kind) -> void
+Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.AddSourceFile(string! path, Microsoft.CodeAnalysis.SourceCodeKind kind, System.Collections.Generic.IEnumerable<string!>? folders) -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.BinOutputPath.get -> string!
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.BinOutputPath.set -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContext.BuildErrorReporter.get -> Microsoft.VisualStudio.Shell.Interop.IVsLanguageServiceBuildErrorReporter2?
@@ -148,6 +149,7 @@ Microsoft.CodeAnalysis.ExternalAccess.FSharp.FSharpWorkspaceProjectContextFactor
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.AddMetadataReference(string! referencePath) -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.AddSourceFile(string! path, Microsoft.CodeAnalysis.SourceCodeKind kind) -> void
+Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.AddSourceFile(string! path, Microsoft.CodeAnalysis.SourceCodeKind kind, System.Collections.Generic.IEnumerable<string!>? folders) -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.DisplayName.get -> string!
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.DisplayName.set -> void
 Microsoft.CodeAnalysis.ExternalAccess.FSharp.IFSharpWorkspaceProjectContext.FilePath.get -> string!

@@ -41,6 +41,13 @@ internal interface IFSharpWorkspaceProjectContext : IDisposable
     void SetMetadataReferences(IEnumerable<string> referencePaths);
     void AddMetadataReference(string referencePath);
     void AddSourceFile(string path, SourceCodeKind kind);
+
+    /// <summary>
+    /// Adds the file together with the folders it sits in inside the project.  Navigate To orders results that
+    /// match equally well by how far their folders are from the file being edited, so a document added without
+    /// them is as far from that file as every other one.
+    /// </summary>
+    void AddSourceFile(string path, SourceCodeKind kind, IEnumerable<string>? folders);
 }
 
 [Shared]
@@ -215,6 +222,9 @@ internal sealed class FSharpWorkspaceProjectContext : IFSharpWorkspaceProjectCon
 
     public void AddSourceFile(string path, SourceCodeKind kind)
         => _vsProjectContext.AddSourceFile(path, sourceCodeKind: kind);
+
+    public void AddSourceFile(string path, SourceCodeKind kind, IEnumerable<string>? folders)
+        => _vsProjectContext.AddSourceFile(path, folderNames: folders, sourceCodeKind: kind);
 
     public void RemoveSourceFile(string path)
         => _vsProjectContext.RemoveSourceFile(path);
